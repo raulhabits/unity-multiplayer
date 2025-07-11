@@ -10,7 +10,7 @@ public class SoccerPlayerController : AbstractPlayerController
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ball"))
+        if (collision.gameObject.CompareTag("Ball") && PhotonNetwork.IsMasterClient)
         {
             PhotonView ballPV = collision.gameObject.GetComponent<PhotonView>();
 

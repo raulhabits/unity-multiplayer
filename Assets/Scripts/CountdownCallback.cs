@@ -15,6 +15,8 @@ public class CountdownCallback : MonoBehaviourPunCallbacks
     private double startTime;
     private bool timerRunning = false;
 
+    public GameObject gameOverPanel;
+
     void Start()
     {
 
@@ -38,7 +40,7 @@ public class CountdownCallback : MonoBehaviourPunCallbacks
         {
             timeLeft = 0;
             timerRunning = false;
-            OnTimerEnd();
+            ShowGameOverPanel();
         }
 
         UpdateTimerUI(timeLeft);
@@ -51,10 +53,9 @@ public class CountdownCallback : MonoBehaviourPunCallbacks
         timerText.text = $"{minutes:00}:{seconds:00}";
     }
 
-    void OnTimerEnd()
+    void ShowGameOverPanel()
     {
-        Debug.Log("Match ended");
-        // End game logic here
+        gameOverPanel.SetActive(true);
     }
 
 

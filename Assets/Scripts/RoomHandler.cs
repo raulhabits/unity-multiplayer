@@ -14,15 +14,13 @@ public class RoomHandler : MonoBehaviourPunCallbacks
     public GameObject playerEntryPrefab;
     public Button readyButton;
     public TMP_Text statusText;
-    public TMP_Text playerNameText;
-    public TMP_Dropdown miniGameSelector;
 
     private Dictionary<int, GameObject> playerEntries = new Dictionary<int, GameObject>();
 
     private const float countdownDuration = 5f;
     private double countdownStartTime = -1;
     private bool countdownStarted = false;
-    private string gameSceneName = "";
+    private string gameSceneName = "Fut5";
 
     void Start()
     {
@@ -35,10 +33,7 @@ public class RoomHandler : MonoBehaviourPunCallbacks
         }
 
         readyButton.onClick.AddListener(OnReadyClicked);
-        playerNameText.text = PhotonNetwork.NickName;
 
-        gameSceneName = miniGameSelector.options[0].text;
-        miniGameSelector.onValueChanged.AddListener(OnMiniGameSelectorChanged);
     }
 
     void Update()
@@ -139,12 +134,4 @@ public class RoomHandler : MonoBehaviourPunCallbacks
         }
     }
 
-    public void OnMiniGameSelectorChanged(int index)
-    {
-        string selectedOption = miniGameSelector.options[index].text;
-        Debug.Log("TMP Selected: " + selectedOption);
-        // Your logic here
-
-        gameSceneName = selectedOption;
-    }
 }
